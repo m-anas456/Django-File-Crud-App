@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>{{ object.filename }}</title>
+    <style>
+        body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    margin: 40px;
+    background-color: #fff;
+    color: #222;
+}
+
+h1 {
+    border-bottom: 2px solid #007BFF;
+    padding-bottom: 10px;
+}
+
+p {
+    font-size: 1.1em;
+    margin: 15px 0;
+}
+
+a {
+    color: #007BFF;
+    text-decoration: none;
+    margin-right: 15px;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+    </style>
+</head>
+<body>
+    <h1>{{ object.filename }}</h1>
+    <p><strong>Description:</strong> {{ object.description|default:"No description" }}</p>
+    <p><strong>Uploaded At:</strong> {{ object.uploaded_at }}</p>
+    <p><strong>Size:</strong> {{ object.size }} bytes</p>
+
+    <p><a href="{{ object.file.url }}">Download file</a></p>
+
+    <p>
+        <a href="{% url 'file-update' object.pk %}">Edit</a> |
+        <a href="{% url 'file-delete' object.pk %}">Delete</a> |
+        <a href="{% url 'file-list' %}">Back to list</a>
+    </p>
+</body>
+</html>

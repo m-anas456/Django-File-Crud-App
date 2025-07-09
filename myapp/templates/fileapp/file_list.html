@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Files List</title>
+    <style>
+        body {
+    font-family: Arial, sans-serif;
+    margin: 40px;
+    background-color: #f9f9f9;
+}
+
+h1 {
+    color: #333;
+}
+
+a {
+    text-decoration: none;
+    color: #007BFF;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+ul {
+    list-style-type: none;
+    padding-left: 0;
+}
+
+li {
+    padding: 8px 0;
+    border-bottom: 1px solid #ddd;
+}
+
+    </style>
+</head>
+<body>
+    <h1>Uploaded Files</h1>
+    <a href="{% url 'file-create' %}">Upload New File</a>
+    <ul>
+        {% for file in files %}
+            <li>
+                <a href="{% url 'file-detail' file.pk %}">{{ file.filename }}</a> ({{ file.size }} bytes)
+            </li>
+        {% empty %}
+            <li>No files uploaded yet.</li>
+        {% endfor %}
+    </ul>
+</body>
+</html>
